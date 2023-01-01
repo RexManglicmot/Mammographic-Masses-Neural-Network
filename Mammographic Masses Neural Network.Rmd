@@ -1,0 +1,72 @@
+---
+title: "Mammographic Masses Neural Network"
+author: "Rex Manglicmot"
+date: "2023-01-01"
+output: 
+  github_document: 
+    toc: yes
+---
+
+## Continuing Working Document
+
+## Introduction
+
+
+## Loading the Libraries
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+
+## Loading the Data
+```{r}
+#get data from UCI website
+url <- 'https://archive.ics.uci.edu/ml/machine-learning-databases/mammographic-masses/mammographic_masses.data'
+
+#load data into object
+data_orig <- read.csv(url)
+```
+
+
+## Cleaning the Data
+```{r}
+# look at data
+str(data_orig)
+```
+It would seem that the data is messy.
+
+On the UCI website it listed that the there are a total of 961 observatins but we have only 960. Therefore, the column name would appear to be an observation. However, upo further inspection, the "X5.1" and "X3.1" column does not make any sense because values should be based on 1-5 and 1-4, respectively. I will therefore delete that observation from the dataset and relabel the columns. 
+
+But first, I will make a copy of the original dataset for manipulation.
+
+```{r}
+#make a copy
+data <- data_orig
+
+#change column names
+colnames(data) <- c('BIRAD', 'age', 'shape', 'margin', 'density', 'result')
+
+#get rid of BIRAD since on the UCI website it is non-predictive
+data <- subset(data, select = -(BIRAD))
+```
+
+
+## Exploratory Data Analysis
+```{r}
+
+```
+
+
+## Neural Networks
+
+```{r}
+
+```
+
+## Limitations
+
+
+## Conclusion
+
+
+## Inspiration for this project

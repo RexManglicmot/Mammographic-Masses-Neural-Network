@@ -75,9 +75,103 @@ colnames(data) <- c('BIRAD', 'age', 'shape', 'margin', 'density', 'result')
 
 #get rid of BIRAD since on the UCI website it is non-predictive
 data <- subset(data, select = -(BIRAD))
+
+#How many NA do we have?
+sum(is.na(data))
 ```
 
+    ## [1] 0
+
+``` r
+#how many columns have ?
+sum(data == '?')
+```
+
+    ## [1] 160
+
+``` r
+# which specific observations have '?'
+which(data == '?')
+```
+
+    ##   [1]  443  453  683  884  923  966  969  980 1008 1014 1034 1043 1088 1117 1123
+    ##  [16] 1196 1215 1347 1348 1349 1354 1436 1456 1479 1491 1497 1514 1521 1541 1574
+    ##  [31] 1620 1621 1622 1712 1738 1784 1925 1926 1927 1932 1939 1940 1942 1947 1955
+    ##  [46] 1968 1979 2004 2005 2007 2014 2020 2021 2023 2053 2067 2076 2077 2079 2107
+    ##  [61] 2147 2198 2218 2225 2235 2279 2291 2292 2307 2314 2372 2379 2396 2439 2440
+    ##  [76] 2441 2451 2461 2494 2582 2611 2643 2665 2739 2881 2884 2899 2902 2906 2915
+    ##  [91] 2918 2920 2923 2925 2927 2932 2933 2935 2937 2938 2939 2943 2945 2947 2954
+    ## [106] 2964 2965 2967 2968 2972 2976 2977 2980 2981 2982 2983 2984 2985 2986 2987
+    ## [121] 2989 2993 2994 2996 3001 3006 3007 3008 3013 3022 3024 3036 3038 3051 3056
+    ## [136] 3064 3089 3092 3098 3142 3157 3165 3185 3219 3231 3251 3252 3255 3301 3340
+    ## [151] 3344 3374 3381 3449 3454 3494 3507 3545 3557 3632
+
+``` r
+# which specific observations have '*'
+sum(data == '*')
+```
+
+    ## [1] 0
+
+``` r
+#Replace ? with NAs
+data[data == '?'] <- NA
+
+#sum the NAs again
+sum(is.na(data))
+```
+
+    ## [1] 160
+
+``` r
+#remove the NA observations
+data <- na.omit(data)
+
+#dimensions of the dataset
+dim(data)
+```
+
+    ## [1] 830   5
+
+Let’s change the class
+
+``` r
+#convert age column into a numeric
+data$age <- as.numeric(as.character(data$age))
+
+#create a list to convert remaining columns
+index <- 2:ncol(data)
+
+#pass list to function
+data[ ,index] <- lapply(data[ ,index], as.factor)
+
+#check structure again
+str(data)
+```
+
+    ## 'data.frame':    830 obs. of  5 variables:
+    ##  $ age    : num  58 28 57 76 42 36 60 54 52 59 ...
+    ##  $ shape  : Factor w/ 4 levels "1","2","3","4": 4 1 1 1 2 3 2 1 3 2 ...
+    ##  $ margin : Factor w/ 5 levels "1","2","3","4",..: 5 1 5 4 1 1 1 1 4 1 ...
+    ##  $ density: Factor w/ 4 levels "1","2","3","4": 3 3 3 3 3 2 2 3 3 3 ...
+    ##  $ result : Factor w/ 2 levels "0","1": 2 1 2 2 2 1 1 1 1 2 ...
+    ##  - attr(*, "na.action")= 'omit' Named int [1:130] 1 4 5 6 7 9 12 19 20 22 ...
+    ##   ..- attr(*, "names")= chr [1:130] "1" "4" "5" "6" ...
+
 ## Exploratory Data Analysis
+
+``` r
+#see the summary statistics
+summary(data)
+```
+
+    ##       age        shape   margin  density result 
+    ##  Min.   :18.00   1:190   1:320   1: 11   0:428  
+    ##  1st Qu.:46.00   2:180   2: 23   2: 56   1:402  
+    ##  Median :57.00   3: 80   3:106   3:755          
+    ##  Mean   :55.76   4:380   4:255   4:  8          
+    ##  3rd Qu.:66.00           5:126                  
+    ##  Max.   :96.00
 
 ## Neural Networks
 

@@ -48,20 +48,56 @@ colnames(data) <- c('BIRAD', 'age', 'shape', 'margin', 'density', 'result')
 
 #get rid of BIRAD since on the UCI website it is non-predictive
 data <- subset(data, select = -(BIRAD))
+
+#How many NA do we have?
+sum(is.na(data))
+  
+#how many columns have ?
+sum(data == '?')
+
+# which specific observations have '?'
+which(data == '?')
+
+# which specific observations have '*'
+sum(data == '*')
+
+#Replace ? with NAs
+data[data == '?'] <- NA
+
+#sum the NAs again
+sum(is.na(data))
+
+#remove the NA observations
+data <- na.omit(data)
+
+#dimensions of the dataset
+dim(data)
 ```
 
+Let's change the class
+```{r}
+#convert age column into a numeric
+data$age <- as.numeric(as.character(data$age))
 
+#create a list to convert remaining columns
+index <- 2:ncol(data)
+
+#pass list to function
+data[ ,index] <- lapply(data[ ,index], as.factor)
+
+#check structure again
+str(data)
+```
 ## Exploratory Data Analysis
 ```{r}
-
+#see the summary statistics
+summary(data)
 ```
 
 
 ## Neural Networks
 
-```{r}
 
-```
 
 ## Limitations
 

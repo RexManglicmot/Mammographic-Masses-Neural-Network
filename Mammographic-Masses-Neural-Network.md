@@ -28,6 +28,8 @@ Rex Manglicmot
 
 ``` r
 library(tidyverse)
+library(viridis)
+library(neuralnet)
 ```
 
 ## Loading the Data
@@ -197,7 +199,7 @@ ggplot(data, aes(x= age, fill= result)) +
 ![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
 
 ``` r
-  # facet_wrap(~result)
+  # facet_wrap(~result) 
 ```
 
 The distribution looks normal for both, but the means are obviously
@@ -232,6 +234,89 @@ ggplot(data, aes(x=age, y=density, color=result)) +
 ![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ## Neural Networks
+
+``` r
+#convert the columns factors into an integer because factors can't be normalized
+data2 <- as.data.frame(lapply(data,as.integer))
+
+#check the class
+lapply(data2, class)
+```
+
+    ## $age
+    ## [1] "integer"
+    ## 
+    ## $shape
+    ## [1] "integer"
+    ## 
+    ## $margin
+    ## [1] "integer"
+    ## 
+    ## $density
+    ## [1] "integer"
+    ## 
+    ## $result
+    ## [1] "integer"
+
+``` r
+#normalize the dataset with a function
+data_norm <- function (x) {
+  ((x-min(x))/ (max(x)- min(x)))
+}
+
+#use lapply to normalize the data
+data3 <- as.data.frame(lapply(data2, data_norm))
+
+#check if all values are from 0 to 1
+summary(data3)
+```
+
+    ##       age             shape            margin         density      
+    ##  Min.   :0.0000   Min.   :0.0000   Min.   :0.000   Min.   :0.0000  
+    ##  1st Qu.:0.3590   1st Qu.:0.3333   1st Qu.:0.000   1st Qu.:0.6667  
+    ##  Median :0.5000   Median :0.6667   Median :0.500   Median :0.6667  
+    ##  Mean   :0.4842   Mean   :0.5944   Mean   :0.453   Mean   :0.6386  
+    ##  3rd Qu.:0.6154   3rd Qu.:1.0000   3rd Qu.:0.750   3rd Qu.:0.6667  
+    ##  Max.   :1.0000   Max.   :1.0000   Max.   :1.000   Max.   :1.0000  
+    ##      result      
+    ##  Min.   :0.0000  
+    ##  1st Qu.:0.0000  
+    ##  Median :0.0000  
+    ##  Mean   :0.4843  
+    ##  3rd Qu.:1.0000  
+    ##  Max.   :1.0000
+
+``` r
+#make results reproducible
+set.seed(123)
+
+#split the data into an 80 and 20 split
+sample <- sample(2, nrow(data3), replace= TRUE, 
+                 prob= c(0.8, 0.2))
+
+#train and test set
+train <- data3[sample==1, ]
+test <- data3[sample==2, ]
+```
+
+``` r
+#make results reproducible
+set.seed(456)
+
+#create a neural network from our train dataset
+n <- neuralnet(result~., data= train,
+               #1 layer since we have lots of observations
+               hidden = 1,
+               err.fct = 'ce',
+               linear.output = FALSE
+               )
+
+#plot the neural network
+plot(n)
+```
+
+4 inputs layer with 4 nodes and 1 output layer with 1 node. There is 1
+hidden layer (as specified in our code) or neuron.
 
 ## Limitations
 

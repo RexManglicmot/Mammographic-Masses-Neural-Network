@@ -15,6 +15,8 @@ output:
 ## Loading the Libraries
 ```{r, message=FALSE}
 library(tidyverse)
+library(viridis)
+library(neuralnet)
 ```
 
 
@@ -104,7 +106,8 @@ ggplot(data, aes(x= age, fill= result)) +
   geom_histogram(position = 'dodge',
                  color = 'black') +
   theme_classic() #+
-  # facet_wrap(~result)
+  # facet_wrap(~result) 
+
 ```
 The distribution looks normal for both, but the means are obviously different. 
 
@@ -115,6 +118,7 @@ ggplot(data, aes(x=age, y=shape, color=result)) +
   theme_classic()
 ```
 Interesting.
+
 
 ```{r}
 #let's look at margin
@@ -132,6 +136,59 @@ ggplot(data, aes(x=age, y=density, color=result)) +
 
 ## Neural Networks
 
+```{r}
+#convert the columns factors into an integer because factors can't be normalized
+data2 <- as.data.frame(lapply(data,as.integer))
+
+#check the class
+lapply(data2, class)
+```
+
+```{r}
+#normalize the dataset with a function
+data_norm <- function (x) {
+  ((x-min(x))/ (max(x)- min(x)))
+}
+
+#use lapply to normalize the data
+data3 <- as.data.frame(lapply(data2, data_norm))
+
+#check if all values are from 0 to 1
+summary(data3)
+```
+```{r}
+#make results reproducible
+set.seed(123)
+
+#split the data into an 80 and 20 split
+sample <- sample(2, nrow(data3), replace= TRUE, 
+                 prob= c(0.8, 0.2))
+
+#train and test set
+train <- data3[sample==1, ]
+test <- data3[sample==2, ]
+```
+
+```{r}
+#make results reproducible
+set.seed(456)
+
+#create a neural network from our train dataset
+n <- neuralnet(result~., data= train,
+               #1 layer since we have lots of observations
+               hidden = 1,
+               err.fct = 'ce',
+               linear.output = FALSE
+               )
+
+#plot the neural network
+plot(n)
+```
+4 inputs layer with 4 nodes and 1 output layer with 1 node. There is 1 hidden layer (as specified in our code) or neuron.
+
+```{r}
+
+```
 
 
 ## Limitations

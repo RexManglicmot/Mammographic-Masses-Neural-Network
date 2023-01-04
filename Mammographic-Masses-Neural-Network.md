@@ -173,6 +173,64 @@ summary(data)
     ##  3rd Qu.:66.00           5:126                  
     ##  Max.   :96.00
 
+``` r
+#create a histogram of the ages overall
+ggplot(data, aes(x=age)) +
+  geom_histogram() +
+  theme_classic()
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+#create a histogram of the ages for 0 and 1
+ggplot(data, aes(x= age, fill= result)) +
+  geom_histogram(position = 'dodge',
+                 color = 'black') +
+  theme_classic() #+
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+
+``` r
+  # facet_wrap(~result)
+```
+
+The distribution looks normal for both, but the means are obviously
+different.
+
+``` r
+#let's look at shape
+ggplot(data, aes(x=age, y=shape, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+Interesting.
+
+``` r
+#let's look at margin
+ggplot(data, aes(x=age, y=margin, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+``` r
+#let's look at density
+ggplot(data, aes(x=age, y=density, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
 ## Neural Networks
 
 ## Limitations

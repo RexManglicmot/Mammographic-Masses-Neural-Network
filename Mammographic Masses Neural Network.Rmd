@@ -93,7 +93,42 @@ str(data)
 #see the summary statistics
 summary(data)
 ```
+```{r}
+#create a histogram of the ages overall
+ggplot(data, aes(x=age)) +
+  geom_histogram() +
+  theme_classic()
 
+#create a histogram of the ages for 0 and 1
+ggplot(data, aes(x= age, fill= result)) +
+  geom_histogram(position = 'dodge',
+                 color = 'black') +
+  theme_classic() #+
+  # facet_wrap(~result)
+```
+The distribution looks normal for both, but the means are obviously different. 
+
+```{r}
+#let's look at shape
+ggplot(data, aes(x=age, y=shape, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
+Interesting.
+
+```{r}
+#let's look at margin
+ggplot(data, aes(x=age, y=margin, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
+
+```{r}
+#let's look at density
+ggplot(data, aes(x=age, y=density, color=result)) +
+  geom_point(position = 'jitter', alpha = 0.5) +
+  theme_classic()
+```
 
 ## Neural Networks
 

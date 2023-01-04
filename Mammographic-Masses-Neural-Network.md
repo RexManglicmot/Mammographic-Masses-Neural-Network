@@ -305,15 +305,18 @@ set.seed(456)
 
 #create a neural network from our train dataset
 n <- neuralnet(result~., data= train,
-               #1 layer since we have lots of observations
+               #1 layer for now 
                hidden = 1,
                err.fct = 'ce',
                linear.output = FALSE
                )
 
 #plot the neural network
-plot(n)
+#need to add the "rep='best'" code, otherwise plot won't show up on Rmarkdown
+plot(n, rep='best')
 ```
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 4 inputs layer with 4 nodes and 1 output layer with 1 node. There is 1
 hidden layer (as specified in our code) or neuron.

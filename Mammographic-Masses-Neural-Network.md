@@ -321,6 +321,108 @@ plot(n, rep='best')
 4 inputs layer with 4 nodes and 1 output layer with 1 node. There is 1
 hidden layer (as specified in our code) or neuron.
 
+``` r
+#Train data -- build confusion matrix
+output <- compute(n, train[,-5])
+
+#store net.result into output object and into another object
+p1 <- output$net.result
+
+#convert the probabilities into binary factor:
+#1, if p1 > 0.5 or 0, if p1 < 0.5
+pred1 <- ifelse(p1 > 0.5, 1, 0)
+
+#build out confusion matrix into a table
+table1 <- table(pred1, train$result)
+
+#view table
+print(table1)
+```
+
+    ##      
+    ## pred1   0   1
+    ##     0 271  54
+    ##     1  77 261
+
+Insights:
+
+-   271 patients were correctly classified as 0
+-   261 patients were correctly classified as 1
+
+There are misclassifications.
+
+``` r
+#calculate missclassification error
+1-sum(diag(table1))/sum(table1)
+```
+
+    ## [1] 0.1975867
+
+``` r
+#Note: sum(diag(table1))/sum(table1) by itself, it gives accuracy.
+```
+
+Misclassification error is 20%.
+
+Repeat for test data.
+
+``` r
+#Test data -- build confusion matrix
+output2 <- compute(n, test[,-5])
+
+#store net.result into output object and into another object
+p2 <- output2$net.result
+
+#convert the probabilities into binary factor:
+#1, if p1 > 0.5 or 0, if p1 < 0.5
+pred2 <- ifelse(p2 > 0.5, 1, 0)
+
+#build out confusion matrix into a table
+table2 <- table(pred2, test$result)
+
+#view table
+print(table2)
+```
+
+    ##      
+    ## pred2  0  1
+    ##     0 67 19
+    ##     1 13 68
+
+Insights:
+
+-   67 patients were correctly classified as 0
+-   68 patients were correctly classified as 1
+
+``` r
+#calculate misclassification error
+1-sum(diag(table2))/sum(table2)
+```
+
+    ## [1] 0.1916168
+
+Misclassification error, again, is 20%.
+
+Neural network is consistent with both the train and test datasets.
+
+Let’s try with more hidden layers.
+
+``` r
+#let's arbitrarily try 4 due to number of inputs
+#create a neural network from our train dataset
+n2 <- neuralnet(result~., data= train,
+               #4 layer for now 
+               hidden = 4,
+               err.fct = 'ce',
+               linear.output = FALSE
+               )
+
+#plot the neural network
+plot(n2, rep='best')
+```
+
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
 ## Limitations
 
 ## Conclusion

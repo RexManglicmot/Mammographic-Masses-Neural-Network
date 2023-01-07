@@ -134,7 +134,19 @@ ggplot(data, aes(x=age, y=density, color=result)) +
   theme_classic()
 ```
 
-## Neural Networks
+## Artificial Neural Networks
+Artificial Neural Networks is akin to the nervous system in that the model uses several neurons through an interconnected pathway to detect hidden patterns in complex datasets.
+
+ANN comprised of:
+
+- an **input layer**: consists of the data set's features (independent variables)
+- a **hidden layer(s)**: consist of neurons and is between the input and output layer 
+- an **output layer**: consist of the data set's outcome (dependent variable(s))
+
+![](https://miro.medium.com/max/828/1*x6KWjKTOBhUYL0MRX4M3oQ.webp)
+
+
+
 
 ```{r}
 #convert the columns factors into an integer because factors can't be normalized

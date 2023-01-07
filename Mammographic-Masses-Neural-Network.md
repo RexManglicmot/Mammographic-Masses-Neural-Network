@@ -14,7 +14,8 @@ Rex Manglicmot
     Data</a>
 -   <a href="#exploratory-data-analysis"
     id="toc-exploratory-data-analysis">Exploratory Data Analysis</a>
--   <a href="#neural-networks" id="toc-neural-networks">Neural Networks</a>
+-   <a href="#artificial-neural-networks"
+    id="toc-artificial-neural-networks">Artificial Neural Networks</a>
 -   <a href="#limitations" id="toc-limitations">Limitations</a>
 -   <a href="#conclusion" id="toc-conclusion">Conclusion</a>
 -   <a href="#inspiration-for-this-project"
@@ -233,7 +234,22 @@ ggplot(data, aes(x=age, y=density, color=result)) +
 
 ![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
-## Neural Networks
+## Artificial Neural Networks
+
+Artificial Neural Networks is akin to the nervous system in that the
+model uses several neurons through an interconnected pathway to detect
+hidden patterns in complex datasets.
+
+ANN comprised of:
+
+-   an **input layer**: consists of the data set’s features (independent
+    variables)
+-   a **hidden layer(s)**: consist of neurons and is between the input
+    and output layer
+-   an **output layer**: consist of the data set’s outcome (dependent
+    variable(s))
+
+![](https://miro.medium.com/max/828/1*x6KWjKTOBhUYL0MRX4M3oQ.webp)
 
 ``` r
 #convert the columns factors into an integer because factors can't be normalized

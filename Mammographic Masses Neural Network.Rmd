@@ -9,7 +9,23 @@ output:
 
 ## Continuing Working Document
 
+Things still need to do/questions:
+
+* more info on neural networks
+* flush out intro
+* get feedback on project
+* better visulization for the dataset?
+
+
 ## Introduction
+<center>
+![](https://mygenius3d.com/wp-content/uploads/2022/07/Hologic-Clarity-HD-1800x1013.jpg)
+
+</center>
+Breast Cancer is a disease that warrants much attention because according to the CDC, it is the most common cancer in women, with incidence rates increasing 0.5%/year, and roughly 13% will develop BC in their lifetime.^[https://www.cancer.org/cancer/breast-cancer/about/how-common-is-breast-cancer.html] According to Breastcancer.org, the overall breast cancer deaths have declined to 43% from 1989-2020 due to treatment advances and early detection.^[https://www.breastcancer.org/facts-statistics] Nevertheless, about 42K women and 500 men die per year.^[https://www.cdc.gov/cancer/breast/basic_info/index.htm#:~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.] Therefore, there is a dire need for prevention and early detection.
+
+The purpose of this project is to identify ways to predict BC through classification of numeric features.
+
 
 
 ## Loading the Libraries

@@ -24,8 +24,9 @@ Things still need to do/questions:
 </center>
 Breast Cancer is a disease that warrants much attention because according to the CDC, it is the most common cancer in women, with incidence rates increasing 0.5%/year, and roughly 13% will develop BC in their lifetime.^[https://www.cancer.org/cancer/breast-cancer/about/how-common-is-breast-cancer.html] According to Breastcancer.org, the overall breast cancer deaths have declined to 43% from 1989-2020 due to treatment advances and early detection.^[https://www.breastcancer.org/facts-statistics] Nevertheless, about 42K women and 500 men die per year.^[https://www.cdc.gov/cancer/breast/basic_info/index.htm#:~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.] Therefore, there is a dire need for prevention and early detection.
 
-The purpose of this project is to identify ways to predict BC through classification of numeric features.
+The purpose of this project is to identify ways to predict BC through classification of numeric features. By doing this research we are extrapolate the model to identify women who fit the classification and propose steps to help decrease the likeliness of incidence. The model I will be using is Neural Networks.
 
+A special acknowledgement to the University of Irvine data repository for making the dataset open to the public.
 
 
 ## Loading the Libraries
@@ -111,12 +112,24 @@ str(data)
 #see the summary statistics
 summary(data)
 ```
+This is interesting. Here are some insights:
+
+* the age of the dataset ranges from 18 to 96 with a mean of 57.
+* shape variable has more of the 4 category than 1.
+* margin variable has more of the 4 category than 1. 
+* density varaible has much more of the 3 cateogry than the others.
+* result variable seems to be about even.
+
 ```{r}
 #create a histogram of the ages overall
 ggplot(data, aes(x=age)) +
   geom_histogram() +
   theme_classic()
+```
 
+The shape of the distribution looks normal. Let's break it apart into result 0 and 1.
+
+```{r}
 #create a histogram of the ages for 0 and 1
 ggplot(data, aes(x= age, fill= result)) +
   geom_histogram(position = 'dodge',
@@ -125,6 +138,7 @@ ggplot(data, aes(x= age, fill= result)) +
   # facet_wrap(~result) 
 
 ```
+
 The distribution looks normal for both, but the means are obviously different. 
 
 ```{r}
@@ -133,7 +147,8 @@ ggplot(data, aes(x=age, y=shape, color=result)) +
   geom_point(position = 'jitter', alpha = 0.5) +
   theme_classic()
 ```
-Interesting.
+
+Interesting. There the ages we see that there is more of 0 in shape categories 1 and 2 while there is more1 in shape category 4. I might also add that there are few observations in shape category 3 for both 0 and 1. 
 
 
 ```{r}

@@ -48,7 +48,13 @@ men die per year.[^3] Therefore, there is a dire need for prevention and
 early detection.
 
 The purpose of this project is to identify ways to predict BC through
-classification of numeric features.
+classification of numeric features. By doing this research we are
+extrapolate the model to identify women who fit the classification and
+propose steps to help decrease the likeliness of incidence. The model I
+will be using is Neural Networks.
+
+A special acknowledgement to the University of Irvine data repository
+for making the dataset open to the public.
 
 ## Loading the Libraries
 
@@ -201,6 +207,14 @@ summary(data)
     ##  3rd Qu.:66.00           5:126                  
     ##  Max.   :96.00
 
+This is interesting. Here are some insights:
+
+-   the age of the dataset ranges from 18 to 96 with a mean of 57.
+-   shape variable has more of the 4 category than 1.
+-   margin variable has more of the 4 category than 1.
+-   density varaible has much more of the 3 cateogry than the others.
+-   result variable seems to be about even.
+
 ``` r
 #create a histogram of the ages overall
 ggplot(data, aes(x=age)) +
@@ -212,6 +226,9 @@ ggplot(data, aes(x=age)) +
 
 ![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
+The shape of the distribution looks normal. Let’s break it apart into
+result 0 and 1.
+
 ``` r
 #create a histogram of the ages for 0 and 1
 ggplot(data, aes(x= age, fill= result)) +
@@ -222,7 +239,7 @@ ggplot(data, aes(x= age, fill= result)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-7-2.png)<!-- -->
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 ``` r
   # facet_wrap(~result) 
@@ -238,8 +255,12 @@ ggplot(data, aes(x=age, y=shape, color=result)) +
   theme_classic()
 ```
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
-Interesting.
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Interesting. There the ages we see that there is more of 0 in shape
+categories 1 and 2 while there is more1 in shape category 4. I might
+also add that there are few observations in shape category 3 for both 0
+and 1.
 
 ``` r
 #let's look at margin
@@ -248,7 +269,7 @@ ggplot(data, aes(x=age, y=margin, color=result)) +
   theme_classic()
 ```
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ``` r
 #let's look at density
@@ -257,7 +278,7 @@ ggplot(data, aes(x=age, y=density, color=result)) +
   theme_classic()
 ```
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ## Artificial Neural Networks
 
@@ -362,7 +383,7 @@ n <- neuralnet(result~., data= train,
 plot(n, rep='best')
 ```
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 4 inputs layer with 4 nodes and 1 output layer with 1 node. There is 1
 hidden layer (as specified in our code) or neuron.
@@ -467,7 +488,7 @@ n2 <- neuralnet(result~., data= train,
 plot(n2, rep='best')
 ```
 
-![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](Mammographic-Masses-Neural-Network_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 ## Limitations
 

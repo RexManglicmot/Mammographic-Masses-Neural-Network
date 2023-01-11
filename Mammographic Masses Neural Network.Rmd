@@ -24,7 +24,17 @@ Things still need to do/questions:
 </center>
 Breast Cancer is a disease that warrants much attention because according to the CDC, it is the most common cancer in women, with incidence rates increasing 0.5%/year, and roughly 13% will develop BC in their lifetime.^[https://www.cancer.org/cancer/breast-cancer/about/how-common-is-breast-cancer.html] According to Breastcancer.org, the overall breast cancer deaths have declined to 43% from 1989-2020 due to treatment advances and early detection.^[https://www.breastcancer.org/facts-statistics] Nevertheless, about 42K women and 500 men die per year.^[https://www.cdc.gov/cancer/breast/basic_info/index.htm#:~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.] Therefore, there is a dire need for prevention and early detection.
 
-The purpose of this project is to identify ways to predict BC through classification of numeric features. By doing this research we are extrapolate the model to identify women who fit the classification and propose steps to help decrease the likeliness of incidence. The model I will be using is Neural Networks.
+A BC tumor can be too small to be papalbale by a physician.^[http://www.idph.state.il.us/about/womenshealth/factsheets/breast_cancer_facts.htm#:~:text=Breast%20cancer%20often%20starts%20out,problems%20and%20can%20cause%20death.] Although there are breast self-exams for detection of a lump, seeking medical attention is the best route for validation. Therefore, a routine mammogram can help with early detection in women. The common route to detect involves a first a mammogram and then a biopsy of the breast in which the physician removes a small amount of breast tissue and is examined by a pathologist for tissue abnormalities akin to breast cancer.^[https://www.mdanderson.org/cancerwise/8-breast-biopsy-questions-answered.h00-159303834.html] This type of biopsy is also used to help physician determine not only if the tissue is cancerous but also at what stage has the cancer developed to. Results of the biopsy often take several days. But according to the authors of the dataset, the 
+
+"*...the low positive predictive value of breast
+biopsy resulting from mammogram interpretation leads to approximately
+70% unnecessary biopsies with benign outcomes.*" 
+
+So in hopes to diminish the amount of breast biopsies, researchers have developed computer-aided diagnosis to assist physicians with their decision to pursue a breast biospy or not by using the BI-RAD attributes and a patient's age. 
+
+The purpose of this project is to identify ways to predict BC through classification of numeric features of the dataset. By doing this research we are extrapolate the model to identify women who fit the classification and propose steps to help decrease the likeliness of incidence.
+
+The model I will be using is Neural Networks.
 
 This project is organized in the following chapters:
 
@@ -39,7 +49,7 @@ This project is organized in the following chapters:
 
 A special acknowledgement to the University of Irvine data repository for making the dataset open to the public. A further special acknowledgement to M. Elter, R. Schulz-Wendtland and T. Wittenberg for their paper and providing the dataset.^[M. Elter, R. Schulz-Wendtland and T. Wittenberg (2007)
 The prediction of breast cancer biopsy outcomes using two CAD approaches that both emphasize an intelligible decision process.
-Medical Physics 34(11), pp. 4164-4172]
+Medical Physics 34(11), pp. 4164-4172] According to the authors, a mammography (a type of x-ray that is used to detect the presence of cancer^[https://www.radiologyinfo.org/en/info/mammo]) is the most effective way for BC screening. The dataset contains features of a mammography.
 
 The original dataset contains the following variables:
 

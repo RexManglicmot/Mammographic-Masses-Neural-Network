@@ -1,10 +1,10 @@
-Mammographic Masses Neural Network
+Mammographic Masses Classification via Neural Network
 ================
 Rex Manglicmot
-2023-01-01
 
--   <a href="#continuing-working-document"
-    id="toc-continuing-working-document">Continuing Working Document</a>
+-   <a href="#status-continuing-working-document"
+    id="toc-status-continuing-working-document">Status: Continuing Working
+    Document</a>
 -   <a href="#introduction" id="toc-introduction">Introduction</a>
 -   <a href="#loading-the-libraries" id="toc-loading-the-libraries">Loading
     the Libraries</a>
@@ -21,14 +21,17 @@ Rex Manglicmot
 -   <a href="#inspiration-for-this-project"
     id="toc-inspiration-for-this-project">Inspiration for this project</a>
 
-## Continuing Working Document
+## Status: Continuing Working Document
 
-Things still need to do/questions:
+Hi everyone. I’m continuing building my data analysis and R skills. As
+such, I would love feedback to better improve this project via
+<rexmanglicmot@gmail.com>. Any mistakes and misrepresentation of the
+data are my own. Things still need to do/questions:
 
 -   more info on neural networks
 -   flush out intro
 -   get feedback on project
--   better visulization for the dataset?
+-   better visualization for the dataset?
 
 ## Introduction
 
@@ -38,14 +41,14 @@ Things still need to do/questions:
 
 </center>
 
-Breast Cancer is a disease that warrants much attention because
+Breast Cancer (BC) is a disease that warrants much attention because
 according to the CDC, it is the most common cancer in women, with
-incidence rates increasing 0.5%/year, and roughly 13% will develop BC in
-their lifetime.[^1] According to Breastcancer.org, the overall breast
-cancer deaths have declined to 43% from 1989-2020 due to treatment
-advances and early detection.[^2] Nevertheless, about 42K women and 500
-men die per year.[^3] Therefore, there is a dire need for prevention and
-early detection.
+incidence rates increasing 0.5% pervyear, and roughly 13% will develop
+BC in their lifetime.[^1] According to Breastcancer.org, the overall
+breast cancer deaths have declined to 43% from 1989-2020 due to
+treatment advances and early detection.[^2] Nevertheless, about 42K
+women and 500 men die per year.[^3] Therefore, there is a dire need for
+prevention and early detection.
 
 A BC tumor can be too small to be papalbale by a physician.[^4] Although
 there are breast self-exams for detection of a lump, seeking medical
@@ -334,10 +337,11 @@ ggplot(data, aes(x=age, y=density, color=result)) +
 Artificial Neural Networks is akin to the nervous system in that the
 model uses several neurons through an interconnected pathway to detect
 hidden patterns in complex datasets. ANN take in data and train to
-recoginize patterns and predict outputs.
+recognize patterns and predict outputs.
 
 Examples of ANN is facial recognition, forecasting, music composition,
-etc.
+etc. Tasks such as image recognition can take minutes compared to hours
+when humans are invovled.[^8]
 
 ANN comprised of:
 
@@ -346,10 +350,23 @@ ANN comprised of:
     and output layer and performs most of the computations.
 -   an **output layer**: predicts final output
 
+<center>
+
 ![](https://miro.medium.com/max/828/1*x6KWjKTOBhUYL0MRX4M3oQ.webp)
 
+</center>
+
 On a much deeper level neurons consists of inputs, weights, bias,
-activation function, and output.
+activation function, and output. As IBM states, in the figure below,
+each nueron has its own linear regression model and the output of the
+model is defined as:[^9]
+
+<center>
+
+∑wixi + bias = w1x1 + w2x2 + w3x3 + bias
+
+output = f(x) = 1 if ∑w1x1 + b\>= 0; 0 if ∑w1x1 + b \< 0
+</center>
 
 ``` r
 #convert the columns factors into an integer because factors can't be normalized
@@ -564,3 +581,7 @@ family.
     Physics 34(11), pp. 4164-4172
 
 [^7]: <https://www.radiologyinfo.org/en/info/mammo>
+
+[^8]: <https://www.ibm.com/topics/neural-networks>
+
+[^9]: <https://www.ibm.com/topics/neural-networks>

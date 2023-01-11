@@ -1,20 +1,19 @@
 ---
-title: "Mammographic Masses Neural Network"
+title: "Mammographic Masses Classification via Neural Network"
 author: "Rex Manglicmot"
-date: "2023-01-01"
 output: 
   github_document: 
     toc: yes
 ---
 
-## Continuing Working Document
-
+## Status: Continuing Working Document
+Hi everyone. I’m continuing building my data analysis and R skills. As such, I would love feedback to better improve this project via rexmanglicmot@gmail.com. Any mistakes and misrepresentation of the data are my own.
 Things still need to do/questions:
 
 * more info on neural networks
 * flush out intro
 * get feedback on project
-* better visulization for the dataset?
+* better visualization for the dataset?
 
 
 ## Introduction
@@ -22,7 +21,7 @@ Things still need to do/questions:
 ![](https://mygenius3d.com/wp-content/uploads/2022/07/Hologic-Clarity-HD-1800x1013.jpg)
 
 </center>
-Breast Cancer is a disease that warrants much attention because according to the CDC, it is the most common cancer in women, with incidence rates increasing 0.5%/year, and roughly 13% will develop BC in their lifetime.^[https://www.cancer.org/cancer/breast-cancer/about/how-common-is-breast-cancer.html] According to Breastcancer.org, the overall breast cancer deaths have declined to 43% from 1989-2020 due to treatment advances and early detection.^[https://www.breastcancer.org/facts-statistics] Nevertheless, about 42K women and 500 men die per year.^[https://www.cdc.gov/cancer/breast/basic_info/index.htm#:~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.] Therefore, there is a dire need for prevention and early detection.
+Breast Cancer (BC) is a disease that warrants much attention because according to the CDC, it is the most common cancer in women, with incidence rates increasing 0.5% pervyear, and roughly 13% will develop BC in their lifetime.^[https://www.cancer.org/cancer/breast-cancer/about/how-common-is-breast-cancer.html] According to Breastcancer.org, the overall breast cancer deaths have declined to 43% from 1989-2020 due to treatment advances and early detection.^[https://www.breastcancer.org/facts-statistics] Nevertheless, about 42K women and 500 men die per year.^[https://www.cdc.gov/cancer/breast/basic_info/index.htm#:~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.] Therefore, there is a dire need for prevention and early detection.
 
 A BC tumor can be too small to be papalbale by a physician.^[http://www.idph.state.il.us/about/womenshealth/factsheets/breast_cancer_facts.htm#:~:text=Breast%20cancer%20often%20starts%20out,problems%20and%20can%20cause%20death.] Although there are breast self-exams for detection of a lump, seeking medical attention is the best route for validation. Therefore, a routine mammogram can help with early detection in women. The common route to detect involves a first a mammogram and then a biopsy of the breast in which the physician removes a small amount of breast tissue and is examined by a pathologist for tissue abnormalities akin to breast cancer.^[https://www.mdanderson.org/cancerwise/8-breast-biopsy-questions-answered.h00-159303834.html] This type of biopsy is also used to help physician determine not only if the tissue is cancerous but also at what stage has the cancer developed to. Results of the biopsy often take several days. But according to the authors of the dataset, the 
 
@@ -197,9 +196,9 @@ ggplot(data, aes(x=age, y=density, color=result)) +
 ```
 
 ## Artificial Neural Networks
-Artificial Neural Networks is akin to the nervous system in that the model uses several neurons through an interconnected pathway to detect hidden patterns in complex datasets. ANN take in data and train to recoginize patterns and predict outputs. 
+Artificial Neural Networks is akin to the nervous system in that the model uses several neurons through an interconnected pathway to detect hidden patterns in complex datasets. ANN take in data and train to recognize patterns and predict outputs. 
 
-Examples of ANN is facial recognition, forecasting, music composition, etc.
+Examples of ANN is facial recognition, forecasting, music composition, etc. Tasks such as image recognition can take minutes compared to hours when humans are invovled.^[https://www.ibm.com/topics/neural-networks]
 
 ANN comprised of:
 
@@ -207,10 +206,17 @@ ANN comprised of:
 - a **hidden layer(s)**: consist of neurons and is between the input and output layer and performs most of the computations.
 - an **output layer**: predicts final output
 
+<center>
 ![](https://miro.medium.com/max/828/1*x6KWjKTOBhUYL0MRX4M3oQ.webp)
 
-On a much deeper level neurons consists of inputs, weights, bias, activation function, and output. 
+</center>
+On a much deeper level neurons consists of inputs, weights, bias, activation function, and output. As IBM states, in the figure below, each nueron has its own linear regression model and the output of the model is defined as:^[https://www.ibm.com/topics/neural-networks]
 
+<center>
+∑wixi + bias = w1x1 + w2x2 + w3x3 + bias
+
+output = f(x) = 1 if ∑w1x1 + b>= 0; 0 if ∑w1x1 + b < 0
+</center>
 
 ```{r}
 #convert the columns factors into an integer because factors can't be normalized

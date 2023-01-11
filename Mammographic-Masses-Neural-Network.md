@@ -53,8 +53,31 @@ extrapolate the model to identify women who fit the classification and
 propose steps to help decrease the likeliness of incidence. The model I
 will be using is Neural Networks.
 
+This project is organized in the following chapters:
+
+1.  Loading the Libraries
+2.  Loading the Data
+3.  Cleaning the Data
+4.  Exploratory Data Analysis
+5.  Neural Networks
+6.  Limitations
+7.  Conclusion
+8.  Inspiration for this project
+
 A special acknowledgement to the University of Irvine data repository
-for making the dataset open to the public.
+for making the dataset open to the public. A further special
+acknowledgement to M. Elter, R. Schulz-Wendtland and T. Wittenberg for
+their paper and providing the dataset.[^4]
+
+The original dataset contains the following variables:
+
+1.  BI-RADS assessment: 1 to 5 (ordinal, non-predictive!)
+2.  Age: patient’s age in years (integer)
+3.  Shape: mass shape: round=1 oval=2 lobular=3 irregular=4 (nominal)
+4.  Margin: mass margin: circumscribed=1 microlobulated=2 obscured=3
+    ill-defined=4 spiculated=5 (nominal)
+5.  Density: mass density high=1 iso=2 low=3 fat-containing=4 (ordinal)
+6.  Severity: benign=0 or malignant=1 (binominal, goal field!)
 
 ## Loading the Libraries
 
@@ -504,3 +527,8 @@ family.
 [^2]: <https://www.breastcancer.org/facts-statistics>
 
 [^3]: <https://www.cdc.gov/cancer/breast/basic_info/index.htm#>:\~:text=Each%20year%20in%20the%20United,breast%20cancer%20than%20White%20women.
+
+[^4]: M. Elter, R. Schulz-Wendtland and T. Wittenberg (2007) The
+    prediction of breast cancer biopsy outcomes using two CAD approaches
+    that both emphasize an intelligible decision process. Medical
+    Physics 34(11), pp. 4164-4172

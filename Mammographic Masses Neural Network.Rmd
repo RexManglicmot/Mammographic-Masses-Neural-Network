@@ -225,6 +225,10 @@ data2 <- as.data.frame(lapply(data,as.integer))
 #check the class
 lapply(data2, class)
 ```
+Advantages of Neural Networks:
+
+* learn and model complex relationships
+* generalize the data
 
 ```{r}
 #normalize the dataset with a function

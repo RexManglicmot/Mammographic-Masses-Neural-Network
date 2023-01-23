@@ -391,6 +391,11 @@ lapply(data2, class)
     ## $result
     ## [1] "integer"
 
+Advantages of Neural Networks:
+
+-   learn and model complex relationships
+-   generalize the data
+
 ``` r
 #normalize the dataset with a function
 data_norm <- function (x) {

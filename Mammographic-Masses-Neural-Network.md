@@ -396,6 +396,13 @@ Advantages of Neural Networks:
 -   learn and model complex relationships
 -   generalize the data
 
+Disadvantage of Neural Networks:
+
+-   Blackbox - we are not entirely certain of how the model came up with
+    the output
+-   Requires more data than traditional ML. For example, thousands if
+    not millions of observations
+
 ``` r
 #normalize the dataset with a function
 data_norm <- function (x) {

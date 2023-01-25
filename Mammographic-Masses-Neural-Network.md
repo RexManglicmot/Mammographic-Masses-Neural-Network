@@ -32,6 +32,10 @@ data are my own. Things still need to do/questions:
 -   flush out intro
 -   get feedback on project
 -   better visualization for the dataset?
+-   finish writing the insights from the exhibits
+-   need to get feedback on this project
+-   Work on grammar
+-   write out limitations
 
 ## Introduction
 
